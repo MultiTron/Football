@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,11 +9,13 @@ namespace Models
 {
     public class Team
     {
+        public string Name { get; set; }
         public Coach Coach { get; set; }
         public List<FootballPlayer> Players { get; set; }
         public double AverageAge { get; private set; }
-        public Team(Coach coach, List<FootballPlayer> players)
+        public Team(string name, Coach coach, List<FootballPlayer> players)
         {
+            Name = name;
             Coach = coach;
             if (players.Count < 11 && players.Count > 22)
             {
@@ -31,11 +34,16 @@ namespace Models
         }
         public void RemovePlayer(FootballPlayer player)
         {
-            if (Players.Count <= 11) 
-            { 
+            if (Players.Count <= 11)
+            {
                 throw new Exception("Can't have less then 11 players in a team.");
             }
             Players.Remove(player);
+        }
+        public FootballPlayer this[int index] { get => Players[index]; set => Players[index] = value; }
+        public bool Contains(FootballPlayer player)
+        {
+            return Players.Contains(player);
         }
     }
 }

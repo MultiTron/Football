@@ -18,5 +18,9 @@ namespace Models
             Number = number;
             Height = height;
         }
+        public virtual Goal Score(int minute)
+        {
+            return new Goal(minute, this);
+        }
     }
 }

@@ -16,5 +16,9 @@ namespace Models
         public override int Age { get; set ; }
         public override int Number { get ; set ; }
         public override double Height { get ; set ; }
+        public override Goal Score(int minute)
+        {
+            return base.Score(minute);
+        }
     }
 }
